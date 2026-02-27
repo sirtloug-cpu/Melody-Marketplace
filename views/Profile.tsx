@@ -3,14 +3,15 @@ import { User } from '../types';
 import { supabase } from '../services/supabaseClient';
 import { motion } from 'motion/react';
 import { Button } from '../components/Button';
-import { User as UserIcon, Camera, Loader2 } from 'lucide-react';
+import { User as UserIcon, Camera, Loader2, LogOut } from 'lucide-react';
 
 interface ProfileProps {
   user: User | null;
   setUser: (user: User) => void;
+  handleLogout: () => void;
 }
 
-export const Profile: React.FC<ProfileProps> = ({ user, setUser }) => {
+export const Profile: React.FC<ProfileProps> = ({ user, setUser, handleLogout }) => {
   const [isUploading, setIsUploading] = useState(false);
 
   if (!user) return null;
@@ -70,7 +71,7 @@ export const Profile: React.FC<ProfileProps> = ({ user, setUser }) => {
         <h3 className="text-2xl font-bold text-white mb-2">{user.name}</h3>
         <p className="text-zinc-400 mb-8">{user.email}</p>
 
-        <div className="w-full grid grid-cols-2 gap-4">
+        <div className="w-full grid grid-cols-2 gap-4 mb-8">
           <div className="bg-zinc-800 p-6 rounded-2xl text-center">
             <p className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-1">Account Type</p>
             <p className="text-white font-medium">{user.isArtist ? 'Artist' : 'Listener'}</p>
@@ -80,6 +81,14 @@ export const Profile: React.FC<ProfileProps> = ({ user, setUser }) => {
             <p className="text-white font-medium">{user.library.length} Tracks</p>
           </div>
         </div>
+
+        <button 
+          onClick={handleLogout}
+          className="flex items-center gap-2 px-6 py-3 bg-red-500/10 text-red-500 hover:bg-red-500/20 rounded-xl font-bold transition-colors w-full justify-center"
+        >
+          <LogOut size={20} />
+          Log Out
+        </button>
 
       </div>
     </motion.div>

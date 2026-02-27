@@ -89,66 +89,69 @@ const BeatSlide: React.FC<BeatSlideProps> = ({
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-md h-full flex flex-col justify-end pb-24 px-6 md:pb-12">
+      <div className="relative z-10 w-full max-w-md h-full flex flex-col justify-end pb-36 px-4 md:pb-32 mx-auto">
         
         {/* Center Album Art (Vinyl Style) */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-           <motion.div 
-             animate={{ rotate: isActive && isPlaying ? 360 : 0 }}
-             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-             className={`w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-zinc-800/50 shadow-2xl overflow-hidden relative ${isActive ? 'opacity-100 scale-100' : 'opacity-50 scale-90'} transition-all duration-500`}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none pb-32 md:pb-40">
+           <div 
+             className={`w-56 h-56 md:w-80 md:h-80 rounded-full border-4 border-zinc-800/50 shadow-2xl overflow-hidden relative transition-all duration-500 ${isActive ? 'opacity-100 scale-100' : 'opacity-50 scale-90'}`}
            >
-              <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-8 h-8 bg-zinc-900 rounded-full border border-zinc-700" />
+              <div 
+                className="w-full h-full animate-[spin_8s_linear_infinite]"
+                style={{ animationPlayState: isActive && isPlaying ? 'running' : 'paused' }}
+              >
+                <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
               </div>
-           </motion.div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                 <div className="w-10 h-10 md:w-12 md:h-12 bg-zinc-900 rounded-full border-4 border-zinc-800 shadow-inner" />
+              </div>
+           </div>
         </div>
 
         {/* Right Side Actions */}
-        <div className="absolute right-4 bottom-32 flex flex-col items-center gap-6 z-20">
+        <div className="absolute right-2 bottom-40 md:bottom-36 flex flex-col items-center gap-4 md:gap-5 z-20">
           <div className="flex flex-col items-center gap-1">
             <button 
               onClick={handleLike}
-              className="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
+              className="w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
             >
-              <Heart size={24} className={isLiked ? "fill-[#BEE7FF] text-[#BEE7FF]" : "text-white"} />
+              <Heart size={20} className={isLiked ? "fill-[#BEE7FF] text-[#BEE7FF]" : "text-white"} />
             </button>
-            <span className="text-[10px] font-bold text-white drop-shadow-md">Like</span>
+            <span className="text-[9px] md:text-[10px] font-bold text-white drop-shadow-md">Like</span>
           </div>
 
           <div className="flex flex-col items-center gap-1">
             <button 
               onClick={handleComment}
-              className="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
+              className="w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
             >
-              <MessageCircle size={24} className="text-white" />
+              <MessageCircle size={20} className="text-white" />
             </button>
-            <span className="text-[10px] font-bold text-white drop-shadow-md">Comment</span>
+            <span className="text-[9px] md:text-[10px] font-bold text-white drop-shadow-md">Comment</span>
           </div>
 
           <div className="flex flex-col items-center gap-1">
             <button 
               onClick={handleShare}
-              className="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
+              className="w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
             >
-              <Share2 size={24} className="text-white" />
+              <Share2 size={20} className="text-white" />
             </button>
-            <span className="text-[10px] font-bold text-white drop-shadow-md">Share</span>
+            <span className="text-[9px] md:text-[10px] font-bold text-white drop-shadow-md">Share</span>
           </div>
 
           <div className="flex flex-col items-center gap-1">
              <button 
                onClick={handleMore}
-               className="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
+               className="w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-transform active:scale-90 border border-white/10"
              >
-                <MoreHorizontal size={24} className="text-white" />
+                <MoreHorizontal size={20} className="text-white" />
              </button>
           </div>
         </div>
 
         {/* Bottom Info */}
-        <div className="flex flex-col gap-3 max-w-[80%] mb-4">
+        <div className="flex flex-col gap-2 md:gap-3 max-w-[80%] md:max-w-[85%] mb-2 relative z-20">
           <div className="flex items-center gap-2 mb-1">
              <div className="px-2 py-1 bg-white/10 backdrop-blur-md rounded-md text-[10px] font-bold uppercase tracking-wider text-white border border-white/10">
                 {track.genre}
@@ -158,31 +161,31 @@ const BeatSlide: React.FC<BeatSlideProps> = ({
              </div>
           </div>
 
-          <h2 className="text-2xl font-black text-white leading-tight drop-shadow-lg line-clamp-2">{track.title}</h2>
-          <h3 className="text-lg font-bold text-zinc-200 drop-shadow-md flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl font-black text-white leading-tight drop-shadow-lg line-clamp-2">{track.title}</h2>
+          <h3 className="text-base md:text-lg font-bold text-zinc-200 drop-shadow-md flex items-center gap-2">
             <span className="truncate">{track.artist}</span>
             <CheckBadge />
           </h3>
 
-          <div className="flex items-center gap-2 mt-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full w-fit border border-white/5">
-             <Disc size={16} className={`text-zinc-300 ${isActive && isPlaying ? 'animate-spin' : ''}`} />
-             <div className="text-xs text-zinc-300 font-medium truncate max-w-[150px]">
+          <div className="flex items-center gap-2 mt-1 md:mt-2 bg-black/30 backdrop-blur-sm px-3 py-1.5 md:py-2 rounded-full w-fit border border-white/5">
+             <Disc size={14} className={`text-zinc-300 md:w-4 md:h-4 ${isActive && isPlaying ? 'animate-spin' : ''}`} />
+             <div className="text-[10px] md:text-xs text-zinc-300 font-medium truncate max-w-[120px] md:max-w-[150px]">
                 Original Audio - {track.artist}
              </div>
           </div>
           
-          <div className="flex gap-3 mt-4">
+          <div className="flex gap-2 md:gap-3 mt-2 md:mt-4">
              <button 
                onClick={isActive && isPlaying ? onPause : onPlay}
-               className="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg"
+               className="w-12 h-12 md:w-14 md:h-14 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shrink-0"
              >
-               {isActive && isPlaying ? <Pause size={24} fill="currentColor"/> : <Play size={24} fill="currentColor" className="ml-1"/>}
+               {isActive && isPlaying ? <Pause size={20} fill="currentColor" className="md:w-6 md:h-6"/> : <Play size={20} fill="currentColor" className="ml-1 md:w-6 md:h-6"/>}
              </button>
              <button 
                onClick={onAddToCart}
-               className="flex-1 bg-[#BEE7FF] text-black h-14 rounded-full font-black uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:bg-[#A0D8FF] transition-colors shadow-[0_0_20px_rgba(190,231,255,0.3)] hover:scale-[1.02] active:scale-[0.98]"
+               className="flex-1 bg-[#BEE7FF] text-black h-12 md:h-14 rounded-full font-black uppercase tracking-wider text-[10px] md:text-xs flex items-center justify-center gap-2 hover:bg-[#A0D8FF] transition-colors shadow-[0_0_20px_rgba(190,231,255,0.3)] hover:scale-[1.02] active:scale-[0.98]"
              >
-               <ShoppingBag size={18} />
+               <ShoppingBag size={16} className="md:w-[18px] md:h-[18px]" />
                Buy R{track.price}
              </button>
           </div>
@@ -329,7 +332,7 @@ export const BeatFeed: React.FC<BeatFeedProps> = ({
   return (
     <div 
       ref={containerRef} 
-      className="h-[calc(100vh-80px)] md:h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar bg-black"
+      className="h-full w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar bg-black"
     >
       {tracks.map((track, index) => (
         <BeatSlide

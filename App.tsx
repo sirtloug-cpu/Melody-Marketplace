@@ -461,7 +461,7 @@ export default function App() {
           )}
         </header>
 
-        <div className="flex-1 overflow-y-auto pt-4 md:pt-24 px-4 md:px-12 pb-32 scrollbar-hide">
+        <div className={`flex-1 overflow-y-auto ${currentView === View.BEAT_FEED ? 'p-0' : 'pt-4 md:pt-24 px-4 md:px-12 pb-32'} scrollbar-hide`}>
            {selectedPlaylist ? (
              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="flex items-center gap-4 mb-8">
@@ -557,7 +557,7 @@ export default function App() {
                setCurrentView={setCurrentView} 
              />
            ) : currentView === View.PROFILE ? (
-             <Profile user={user} setUser={setUser} />
+             <Profile user={user} setUser={setUser} handleLogout={handleLogout} />
            ) : currentView === View.BEAT_FEED ? (
              <BeatFeed 
                tracks={allTracks} 
